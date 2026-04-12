@@ -4,6 +4,7 @@ const ASSETS = [
   '/index.html',
   '/index.js',
   '../shared/assets/reset.css',
+  '../shared/assets/darktheme.css',
   '../shared/constants/settings.json'
 ];
 

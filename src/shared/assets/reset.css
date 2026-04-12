@@ -1,18 +1,69 @@
-/* STRUCTURAL BONES ONLY */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-    font-family: 'Space Grotesk', sans-serif;
-    line-height: 1.5;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
+/* APPLICATION GRID */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg);
+    overflow: hidden;
 }
 
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+/* SIDEBAR */
+.side-nav {
+    width: 240px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    background: var(--panel);
 }
 
-.wrap { position: relative; display: inline-flex; }
+.nav-brand { margin-bottom: 48px; }
+
+.nav-list { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+.nav-item {
+    text-decoration: none;
+    font-family: 'Orbitron';
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--textDim);
+    padding: 12px;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.1s ease;
+}
+
+.nav-item.active, .nav-item:hover {
+    color: var(--accent);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+}
+
+.nav-icon { font-family: 'Space Mono'; opacity: 0.4; font-size: 9px; }
+
+/* MAIN STAGE */
+.main-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}

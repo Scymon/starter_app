@@ -3,19 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#0b0d12">
     <title>Starter App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Space+Grotesk&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Space+Grotesk:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../shared/assets/reset.css">
     <link rel="stylesheet" href="../shared/assets/darktheme.css">
     <link rel="manifest" href="manifest.json">
 </head>
-<body>
-    <h1>Starter App: Active</h1>
+<body class="app-container">
 
-    <div class="wrap">
-        <button class="btn-slate">Initialize</button>
-    </div>
+    <aside class="side-nav">
+        <div class="nav-brand">
+            <div class="sg-eyebrow">SYSTEM_CORE</div>
+            <div class="sg-title">V-FORM</div>
+        </div>
+
+        <nav class="nav-list">
+            <a href="index.html" class="nav-item active">
+                <span class="nav-icon">01</span> HOME
+            </a>
+            <a href="styleguide.html" class="nav-item">
+                <span class="nav-icon">02</span> STYLEGUIDE
+            </a>
+        </nav>
+
+        <div class="nav-footer">
+            <div class="sg-mono">BUILD_2.4.1</div>
+        </div>
+    </aside>
+
+    <main class="main-stage">
+        <header class="status-header">
+            <h1 class="sg-title">Starter App: <span>Active</span></h1>
+            <div class="sg-badge">STATUS: NOMINAL</div>
+        </header>
+
+        <section class="content-area">
+            <div class="wrap">
+                <div class="glow"></div>
+                <button class="btn-slate">Initialize</button>
+            </div>
+        </section>
+    </main>
 
     <script src="index.js"></script>
     <script>
