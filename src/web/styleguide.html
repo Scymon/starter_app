@@ -4,12 +4,556 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Styleguide — Slate Coal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Space+Grotesk:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../shared/assets/reset.css">
     <link rel="stylesheet" href="../shared/assets/darktheme.css">
+    <style>
+    /* ── SLATE COAL TOKEN REFERENCE ──
+       --bg:          #0b0d12
+       --surface:     #08090e
+       --textPrimary: #c8cdd8
+       --textDim:     #6d7585
+       --accent:      #d0d4de
+       --borderHi:    rgba(208,212,222,0.85)
+       border:        rgba(100,110,130,0.18)
+    ── */
+
+    /* ── SECTION STRUCTURE ── */
+    .sg-page { padding: 32px; display: flex; flex-direction: column; gap: 56px; }
+    .sg-block { display: flex; flex-direction: column; gap: 20px; }
+    .sg-block-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+        color: rgba(109,117,133,0.6);
+        display: flex; align-items: center; gap: 12px;
+    }
+    .sg-block-label::after { content: ''; flex: 1; height: 1px; background: rgba(100,110,130,0.18); }
+    .sg-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+    .sg-col { display: flex; flex-direction: column; flex: 1; min-width: 180px; gap: 8px; }
+    .sg-col-auto { display: flex; flex-direction: column; gap: 8px; }
+
+    /* ── FIELD LABEL ── */
+    .field-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--textDim, #6d7585);
+    }
+
+    /* ── TYPOGRAPHY SPECIMENS ── */
+    .font-card {
+        background: rgba(8,9,14,0.8);
+        border: 1px solid rgba(100,110,130,0.18);
+        border-top: 1px solid rgba(208,212,222,0.08);
+        padding: 20px;
+        flex: 1; min-width: 200px;
+    }
+    .font-card .eyebrow {
+        font-family: 'Space Mono', monospace;
+        font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--accent, #d0d4de); margin-bottom: 12px;
+    }
+    .font-card .specimen-display {
+        font-family: 'Orbitron', sans-serif; font-weight: 900;
+        font-size: 32px; color: var(--textPrimary, #c8cdd8); line-height: 1;
+        margin-bottom: 8px;
+    }
+    .font-card .specimen-sub {
+        font-family: 'Orbitron', sans-serif; font-weight: 500;
+        font-size: 16px; color: var(--textPrimary, #c8cdd8);
+    }
+    .font-card .specimen-body {
+        font-family: 'Space Grotesk', sans-serif; font-size: 15px;
+        color: var(--textPrimary, #c8cdd8); line-height: 1.6;
+    }
+    .font-card .specimen-mono {
+        font-family: 'Space Mono', monospace; font-size: 11px;
+        color: var(--accent, #d0d4de);
+    }
+    .font-card .meta {
+        font-family: 'Space Mono', monospace; font-size: 9px;
+        color: var(--textDim, #6d7585); margin-top: 8px;
+    }
+
+    /* ── TYPE SCALE TABLE ── */
+    .type-scale-panel {
+        background: rgba(8,9,14,0.8);
+        border: 1px solid rgba(100,110,130,0.18);
+        border-top: 1px solid rgba(208,212,222,0.08);
+        padding: 20px; display: flex; flex-direction: column;
+    }
+    .type-scale-row {
+        display: flex; align-items: baseline; gap: 20px;
+        padding: 10px 0; border-bottom: 1px solid rgba(100,110,130,0.1);
+    }
+    .type-scale-row:last-child { border-bottom: none; }
+    .type-scale-meta {
+        font-family: 'Space Mono', monospace; font-size: 9px;
+        color: var(--textDim, #6d7585); min-width: 80px; flex-shrink: 0;
+    }
+
+    /* ── ORBITRON WEIGHTS ── */
+    .weight-card {
+        background: rgba(8,9,14,0.8);
+        border: 1px solid rgba(100,110,130,0.18);
+        padding: 14px 18px; flex: 1; min-width: 80px;
+    }
+    .weight-card .w-label {
+        font-family: 'Space Mono', monospace; font-size: 9px;
+        color: var(--textDim, #6d7585); margin-bottom: 6px;
+    }
+    .weight-card .w-specimen { font-family: 'Orbitron', sans-serif; font-size: 18px; color: var(--textPrimary, #c8cdd8); }
+
+    /* ── FORM INPUTS ── */
+    input[type=text], input[type=email], input[type=password], textarea, select {
+        border-radius: 2px;
+        font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+        color: var(--textPrimary, #c8cdd8);
+        background: linear-gradient(180deg, #0d0f16 0%, #08090e 100%);
+        border-top: 1px solid rgba(0,0,0,0.9);
+        border-left: 1px solid rgba(0,0,0,0.7);
+        border-right: 1px solid rgba(100,110,130,0.15);
+        border-bottom: 1px solid rgba(100,110,130,0.2);
+        padding: 11px 14px;
+        width: 100%; outline: none;
+        transition: border-color 0.12s, box-shadow 0.12s;
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.7);
+        -webkit-appearance: none; appearance: none;
+    }
+    input[type=text]::placeholder,
+    input[type=email]::placeholder,
+    input[type=password]::placeholder,
+    textarea::placeholder { color: rgba(109,117,133,0.5); }
+    input[type=text]:focus,
+    input[type=email]:focus,
+    input[type=password]:focus,
+    textarea:focus, select:focus {
+        border-right-color: rgba(208,212,222,0.4);
+        border-bottom-color: rgba(208,212,222,0.5);
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.7),
+                    0 0 0 1px rgba(208,212,222,0.08),
+                    0 0 10px rgba(200,205,216,0.06);
+    }
+    .input-error {
+        border-right-color: rgba(220,70,70,0.5) !important;
+        border-bottom-color: rgba(220,70,70,0.7) !important;
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.7),
+                    0 0 0 1px rgba(200,40,40,0.1) !important;
+    }
+    .input-success {
+        border-right-color: rgba(80,160,80,0.5) !important;
+        border-bottom-color: rgba(80,180,80,0.6) !important;
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.7),
+                    0 0 0 1px rgba(60,140,60,0.1) !important;
+    }
+    .helper { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.04em; margin-top: 5px; }
+    .helper.err { color: rgba(230,100,100,0.8); }
+    .helper.ok  { color: rgba(100,190,100,0.8); }
+
+    /* ── INPUT WITH ICON ── */
+    .input-wrap { position: relative; }
+    .input-wrap input { padding-left: 38px; }
+    .input-wrap .icon {
+        position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+        color: var(--textDim, #6d7585); font-size: 14px; pointer-events: none;
+        stroke: rgba(109,117,133,0.5); fill: none; stroke-width: 1.8; stroke-linecap: round;
+    }
+    .input-wrap:focus-within .icon { stroke: rgba(208,212,222,0.6); }
+
+    textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+    /* ── SELECT ── */
+    .select-wrap { position: relative; }
+    .select-wrap select { padding-right: 36px; cursor: pointer; }
+    .select-wrap::after {
+        content: '▾'; position: absolute; right: 13px; top: 50%; transform: translateY(-50%);
+        color: var(--textDim, #6d7585); font-size: 12px; pointer-events: none;
+    }
+    select option { background: #0d0f16; color: var(--textPrimary, #c8cdd8); }
+
+    /* ── SEARCH ── */
+    .search-wrap { position: relative; }
+    .search-wrap input { padding-left: 38px; padding-right: 52px; }
+    .search-wrap .search-icon {
+        position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+        pointer-events: none;
+    }
+    .search-wrap .search-icon svg {
+        width: 14px; height: 14px; stroke: rgba(109,117,133,0.5);
+        stroke-width: 2; fill: none; stroke-linecap: round;
+    }
+    .search-wrap input:focus ~ .search-icon svg { stroke: rgba(208,212,222,0.6); }
+    .search-wrap .kbd {
+        position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+        font-family: 'Space Mono', monospace; font-size: 9px;
+        color: rgba(109,117,133,0.5);
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(100,110,130,0.2);
+        border-radius: 2px; padding: 2px 5px; pointer-events: none;
+    }
+
+    /* ── TOGGLE ── */
+    .toggle-row { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+    .toggle-track {
+        width: 40px; height: 22px; border-radius: 2px;
+        background: #0a0b10;
+        border-top: 1px solid rgba(0,0,0,0.9);
+        border-left: 1px solid rgba(0,0,0,0.7);
+        border-right: 1px solid rgba(100,110,130,0.12);
+        border-bottom: 1px solid rgba(100,110,130,0.15);
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+        position: relative; transition: background 0.15s; flex-shrink: 0;
+    }
+    .toggle-track.on {
+        background: rgba(208,212,222,0.06);
+        border-bottom-color: rgba(208,212,222,0.5);
+        border-right-color: rgba(208,212,222,0.2);
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.6), 0 0 8px rgba(208,212,222,0.08);
+    }
+    .toggle-thumb {
+        width: 16px; height: 16px; border-radius: 1px;
+        background: linear-gradient(180deg, #3a3d46 0%, #1e2028 100%);
+        border-top: 1px solid rgba(255,255,255,0.25);
+        border-left: 1px solid rgba(255,255,255,0.1);
+        border-right: 1px solid rgba(0,0,0,0.8);
+        border-bottom: 1px solid rgba(0,0,0,0.9);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.8);
+        position: absolute; top: 2px; left: 2px;
+        transition: left 0.15s, background 0.15s;
+    }
+    .toggle-track.on .toggle-thumb {
+        left: 20px;
+        background: linear-gradient(180deg, #c8cdd8 0%, #8a909e 100%);
+        border-top-color: #e4e7ed; border-left-color: #bcc1cc;
+    }
+    .toggle-label { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--textPrimary, #c8cdd8); }
+
+    /* ── CHECKBOX ── */
+    .check-row { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+    .check-box {
+        width: 18px; height: 18px; border-radius: 2px; flex-shrink: 0;
+        background: #0a0b10;
+        border-top: 1px solid rgba(0,0,0,0.9);
+        border-left: 1px solid rgba(0,0,0,0.7);
+        border-right: 1px solid rgba(100,110,130,0.12);
+        border-bottom: 1px solid rgba(100,110,130,0.15);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.1s;
+    }
+    .check-box.on {
+        background: linear-gradient(180deg, #c8cdd8 0%, #8a909e 100%);
+        border-top-color: #e4e7ed;
+        border-left-color: #bcc1cc;
+        border-right-color: rgba(100,110,130,0.4);
+        border-bottom-color: rgba(80,90,110,0.6);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.8), 0 0 8px rgba(208,212,222,0.1);
+    }
+    .check-box svg { width: 11px; height: 11px; stroke: #0b0d12; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.1s; }
+    .check-box.on svg { opacity: 1; }
+    .check-label { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--textPrimary, #c8cdd8); }
+
+    /* ── RADIO ── */
+    .radio-row { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+    .radio-box {
+        width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+        background: #0a0b10;
+        border-top: 1px solid rgba(0,0,0,0.9);
+        border-left: 1px solid rgba(0,0,0,0.7);
+        border-right: 1px solid rgba(100,110,130,0.12);
+        border-bottom: 1px solid rgba(100,110,130,0.15);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.1s;
+    }
+    .radio-box.on {
+        border-bottom-color: rgba(208,212,222,0.5);
+        border-right-color: rgba(208,212,222,0.2);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 0 6px rgba(208,212,222,0.08);
+    }
+    .radio-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: transparent; transition: background 0.1s;
+    }
+    .radio-box.on .radio-dot {
+        background: linear-gradient(180deg, #c8cdd8 0%, #8a909e 100%);
+        box-shadow: 0 0 4px rgba(208,212,222,0.3);
+    }
+    .radio-label { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--textPrimary, #c8cdd8); }
+
+    /* ── RANGE ── */
+    .range-wrap { display: flex; flex-direction: column; gap: 6px; }
+    .range-top { display: flex; justify-content: space-between; align-items: center; }
+    .range-val { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent, #d0d4de); }
+    .range-edge { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(109,117,133,0.5); letter-spacing: 0.06em; }
+    input[type=range] {
+        -webkit-appearance: none; appearance: none;
+        width: 100%; height: 4px; border-radius: 0; border: none; outline: none;
+        background: linear-gradient(90deg, var(--accent, #d0d4de) var(--pct, 25%), rgba(100,110,130,0.2) var(--pct, 25%));
+        box-shadow: none; padding: 0; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px; height: 16px; border-radius: 2px;
+        background: linear-gradient(180deg, #3a3d46 0%, #1e2028 100%);
+        border-top: 1px solid rgba(255,255,255,0.3);
+        border-left: 1px solid rgba(255,255,255,0.12);
+        border-right: 1px solid rgba(0,0,0,0.8);
+        border-bottom: 1px solid rgba(0,0,0,0.9);
+        box-shadow: 0 3px 0 rgba(0,0,0,0.8); cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+        width: 16px; height: 16px; border-radius: 2px;
+        background: linear-gradient(180deg, #3a3d46 0%, #1e2028 100%);
+        border-top: 1px solid rgba(255,255,255,0.3);
+        border-bottom: 1px solid rgba(0,0,0,1);
+        box-shadow: 0 3px 0 rgba(0,0,0,0.8); cursor: pointer; border: none;
+    }
+    .char-row { display: flex; justify-content: flex-end; }
+    .char-count { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(109,117,133,0.45); }
+
+    /* ── STAT CARDS ── */
+    .stat-card {
+        background: rgba(8,9,14,0.9);
+        border: 1px solid rgba(100,110,130,0.18);
+        border-top: 1px solid rgba(208,212,222,0.08);
+        padding: 16px; flex: 1; min-width: 140px;
+        display: flex; flex-direction: column; gap: 6px;
+    }
+    .stat-card .stat-label {
+        font-family: 'Space Mono', monospace; font-size: 9px;
+        letter-spacing: 2px; text-transform: uppercase; color: var(--textDim, #6d7585);
+    }
+    .stat-card .stat-value {
+        font-family: 'Orbitron', sans-serif; font-weight: 700;
+        font-size: 28px; color: var(--accent, #d0d4de); line-height: 1;
+    }
+    .stat-card .stat-delta {
+        font-family: 'Space Mono', monospace; font-size: 10px;
+        color: rgba(100,180,100,0.8);
+    }
+    .stat-card .stat-sub {
+        font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+        color: var(--textDim, #6d7585);
+    }
+    .stat-card .stat-bar {
+        height: 2px; background: rgba(100,110,130,0.2); margin-top: 8px; position: relative;
+    }
+    .stat-card .stat-bar-fill {
+        position: absolute; top: 0; left: 0; height: 100%;
+        background: linear-gradient(90deg, var(--textDim, #6d7585), var(--accent, #d0d4de));
+    }
+
+    /* ── FEATURE CARDS ── */
+    .feature-card {
+        background: rgba(8,9,14,0.9);
+        border: 1px solid rgba(100,110,130,0.18);
+        border-top: 1px solid rgba(208,212,222,0.08);
+        padding: 20px; flex: 1; min-width: 200px;
+        display: flex; flex-direction: column; gap: 10px;
+    }
+    .feature-card .fc-icon {
+        width: 32px; height: 32px;
+        background: rgba(208,212,222,0.06);
+        border: 1px solid rgba(100,110,130,0.2);
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 2px;
+    }
+    .feature-card .fc-icon svg { width: 16px; height: 16px; stroke: var(--accent, #d0d4de); fill: none; stroke-width: 1.5; stroke-linecap: round; }
+    .feature-card .fc-title {
+        font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+        font-size: 15px; color: var(--textPrimary, #c8cdd8);
+    }
+    .feature-card .fc-body {
+        font-family: 'Space Grotesk', sans-serif; font-size: 13px;
+        color: var(--textDim, #6d7585); line-height: 1.5;
+    }
+    .fc-badge {
+        display: inline-flex; align-items: center; gap: 5px;
+        font-family: 'Space Mono', monospace; font-size: 9px;
+        letter-spacing: 1.5px; text-transform: uppercase;
+        padding: 3px 7px;
+        border: 1px solid rgba(100,110,130,0.3);
+        color: var(--textDim, #6d7585);
+        width: fit-content;
+    }
+    .fc-badge.active {
+        border-color: rgba(208,212,222,0.3);
+        color: var(--accent, #d0d4de);
+        background: rgba(208,212,222,0.04);
+    }
+    .fc-badge .dot {
+        width: 5px; height: 5px; border-radius: 50%;
+        background: var(--textDim, #6d7585);
+    }
+    .fc-badge.active .dot { background: var(--accent, #d0d4de); }
+
+    /* ── PROGRESS BARS ── */
+    .progress-row {
+        display: flex; flex-direction: column; gap: 4px;
+    }
+    .progress-header {
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .progress-label { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--textPrimary, #c8cdd8); }
+    .progress-val { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent, #d0d4de); }
+    .progress-track {
+        height: 3px; background: rgba(100,110,130,0.15); position: relative;
+    }
+    .progress-fill {
+        position: absolute; top: 0; left: 0; height: 100%;
+        background: linear-gradient(90deg, rgba(109,117,133,0.6), var(--accent, #d0d4de));
+        transition: width 0.3s;
+    }
+
+    /* ── MODAL ── */
+    .modal-card {
+        background: rgba(11,13,18,0.98);
+        border: 1px solid rgba(100,110,130,0.25);
+        border-top: 1px solid rgba(208,212,222,0.15);
+        padding: 24px; max-width: 300px;
+        display: flex; flex-direction: column; gap: 14px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+    .modal-header {
+        display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .modal-title {
+        font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+        font-size: 16px; color: var(--textPrimary, #c8cdd8);
+    }
+    .modal-title.danger { color: rgba(220,100,100,0.9); }
+    .modal-close {
+        width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+        border: 1px solid rgba(100,110,130,0.2); cursor: pointer;
+        color: var(--textDim, #6d7585); font-size: 12px;
+        background: transparent;
+        font-family: 'Space Mono', monospace;
+    }
+    .modal-close:hover { border-color: rgba(208,212,222,0.3); color: var(--accent, #d0d4de); }
+    .modal-body {
+        font-family: 'Space Grotesk', sans-serif; font-size: 13px;
+        color: var(--textDim, #6d7585); line-height: 1.6;
+    }
+    .modal-code {
+        font-family: 'Space Mono', monospace; font-size: 10px;
+        background: rgba(0,0,0,0.4); border: 1px solid rgba(100,110,130,0.15);
+        padding: 8px 10px; color: var(--accent, #d0d4de);
+    }
+    .modal-danger-box {
+        background: rgba(200,40,40,0.08); border: 1px solid rgba(200,40,40,0.2);
+        padding: 8px 10px;
+        font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.5px;
+        color: rgba(230,100,100,0.9);
+    }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+    /* ── TERMINAL LOG ── */
+    .terminal-card {
+        background: rgba(3,4,7,0.95);
+        border: 1px solid rgba(100,110,130,0.2);
+        flex: 1; min-width: 260px;
+        display: flex; flex-direction: column;
+    }
+    .terminal-bar {
+        display: flex; align-items: center; gap: 6px;
+        padding: 8px 12px; border-bottom: 1px solid rgba(100,110,130,0.15);
+    }
+    .t-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .t-dot.red { background: rgba(200,60,60,0.7); }
+    .t-dot.yellow { background: rgba(200,160,40,0.7); }
+    .t-dot.green { background: rgba(60,160,60,0.7); }
+    .t-title {
+        font-family: 'Space Mono', monospace; font-size: 9px;
+        letter-spacing: 2px; color: var(--textDim, #6d7585); margin-left: 8px;
+    }
+    .terminal-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+    .t-line { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(109,117,133,0.7); line-height: 1.6; }
+    .t-line .t-ok { color: rgba(100,180,100,0.8); }
+    .t-line .t-warn { color: rgba(200,160,60,0.8); }
+    .t-line .t-err { color: rgba(220,80,80,0.8); }
+    .t-line .t-info { color: rgba(100,140,200,0.8); }
+    .t-line .t-accent { color: var(--accent, #d0d4de); }
+
+    /* ── TAGS / BADGES ── */
+    .tag {
+        display: inline-flex; align-items: center;
+        font-family: 'Space Mono', monospace; font-size: 9px;
+        letter-spacing: 1.5px; text-transform: uppercase;
+        padding: 3px 8px;
+        border-radius: 2px;
+        border: 1px solid rgba(100,110,130,0.2);
+        color: var(--textDim, #6d7585);
+        background: rgba(100,110,130,0.05);
+    }
+    .tag.live { border-color: rgba(80,180,80,0.3); color: rgba(100,190,100,0.9); background: rgba(60,140,60,0.06); }
+    .tag.paused { border-color: rgba(200,160,50,0.3); color: rgba(210,170,60,0.9); background: rgba(160,120,0,0.06); }
+    .tag.failed { border-color: rgba(200,60,60,0.3); color: rgba(220,80,80,0.9); background: rgba(160,40,40,0.06); }
+    .tag.nominal { border-color: rgba(208,212,222,0.2); color: var(--accent, #d0d4de); background: rgba(208,212,222,0.04); }
+
+    /* ── TOOLTIP ── */
+    .tooltip-host { position: relative; display: inline-flex; }
+    .tooltip-tip {
+        position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+        font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 1px;
+        white-space: nowrap;
+        background: rgba(11,13,18,0.98);
+        border: 1px solid rgba(208,212,222,0.2);
+        padding: 5px 9px; color: var(--accent, #d0d4de);
+        pointer-events: none; opacity: 0; transition: opacity 0.15s;
+    }
+    .tooltip-host:hover .tooltip-tip { opacity: 1; }
+
+    /* ── NAV TABS ── */
+    .tab-row { display: flex; border-bottom: 1px solid rgba(100,110,130,0.18); }
+    .tab-item {
+        font-family: 'Orbitron', sans-serif; font-weight: 600;
+        font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+        padding: 10px 16px; cursor: pointer;
+        color: var(--textDim, #6d7585);
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        text-decoration: none;
+        transition: all 0.15s;
+    }
+    .tab-item.active {
+        color: var(--accent, #d0d4de);
+        border-bottom-color: var(--accent, #d0d4de);
+    }
+    .tab-item:hover:not(.active) { color: var(--textPrimary, #c8cdd8); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb-trail {
+        display: flex; align-items: center; gap: 6px;
+        font-family: 'Space Mono', monospace; font-size: 10px;
+        letter-spacing: 1px;
+    }
+    .bc-seg { color: var(--textDim, #6d7585); text-decoration: none; }
+    .bc-seg:hover { color: var(--accent, #d0d4de); }
+    .bc-sep { color: rgba(100,110,130,0.3); }
+    .bc-current { color: var(--accent, #d0d4de); font-weight: 700; }
+
+    /* ── PAGINATION ── */
+    .pg-row { display: flex; align-items: center; gap: 4px; }
+    .pg-btn {
+        font-family: 'Space Mono', monospace; font-size: 10px;
+        width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+        border: 1px solid rgba(100,110,130,0.18); cursor: pointer; background: transparent;
+        color: var(--textDim, #6d7585); transition: all 0.15s;
+    }
+    .pg-btn:hover { border-color: rgba(208,212,222,0.2); color: var(--textPrimary, #c8cdd8); }
+    .pg-btn.active { border-color: rgba(208,212,222,0.4); color: var(--accent, #d0d4de); background: rgba(208,212,222,0.04); }
+    .pg-btn.arrow { font-size: 12px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+        .sg-page { padding: 16px; gap: 40px; }
+        .modal-card { max-width: 100%; }
+    }
+    </style>
 </head>
 <body class="app-container">
 
+    <!-- ── SIDEBAR ── -->
     <aside class="side-nav">
         <div class="nav-brand">
             <div class="sg-eyebrow">SYSTEM_CORE</div>
@@ -28,6 +572,7 @@
         </div>
     </aside>
 
+    <!-- ── MAIN ── -->
     <main class="main-stage">
         <header class="status-header">
             <h1>Slate Coal <span>Design System</span></h1>
@@ -36,81 +581,497 @@
 
         <div class="content-area">
 
-            <div class="breadcrumb">
-                <a href="index.html">Home</a>
-                <span class="breadcrumb-sep">—</span>
-                <span class="breadcrumb-current">Styleguide</span>
+            <!-- BREADCRUMB -->
+            <div class="breadcrumb-trail">
+                <a href="index.html" class="bc-seg">Home</a>
+                <span class="bc-sep">/</span>
+                <span class="bc-current">Styleguide</span>
             </div>
 
-            <div class="sg-section">
-                <div class="sg-section-label">Color Tokens</div>
-                <div class="sg-row">
-                    <div class="swatch-wrap">
-                        <div class="swatch" style="background:#0b0d12;"></div>
-                        <div class="swatch-label">--bg</div>
-                        <div class="swatch-hex">#0b0d12</div>
-                    </div>
-                    <div class="swatch-wrap">
-                        <div class="swatch" style="background:#08090e;"></div>
-                        <div class="swatch-label">--surface</div>
-                        <div class="swatch-hex">#08090e</div>
-                    </div>
-                    <div class="swatch-wrap">
-                        <div class="swatch" style="background:#1a1d24;"></div>
-                        <div class="swatch-label">--panel</div>
-                        <div class="swatch-hex">#1a1d24</div>
-                    </div>
-                    <div class="swatch-wrap">
-                        <div class="swatch" style="background:#c8cdd8;"></div>
-                        <div class="swatch-label">--textPrimary</div>
-                        <div class="swatch-hex">#c8cdd8</div>
-                    </div>
-                    <div class="swatch-wrap">
-                        <div class="swatch" style="background:#6d7585;"></div>
-                        <div class="swatch-label">--textDim</div>
-                        <div class="swatch-hex">#6d7585</div>
-                    </div>
-                    <div class="swatch-wrap">
-                        <div class="swatch" style="background:#d0d4de;"></div>
-                        <div class="swatch-label">--accent</div>
-                        <div class="swatch-hex">#d0d4de</div>
-                    </div>
-                    <div class="swatch-wrap">
-                        <div class="swatch" style="background:rgba(208,212,222,0.85);"></div>
-                        <div class="swatch-label">--borderHi</div>
-                        <div class="swatch-hex">rgba(208,212,222,.85)</div>
+            <div class="sg-page">
+
+                <!-- ══ 01 TYPOGRAPHY ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">01 — Font Specimens</div>
+                    <div class="sg-row">
+                        <div class="font-card">
+                            <div class="eyebrow">Display — Orbitron</div>
+                            <div class="specimen-display">VOLTFORM</div>
+                            <div class="specimen-sub">System Online</div>
+                            <div class="meta">Orbitron · 900 / 700 / 500 · Google Fonts</div>
+                        </div>
+                        <div class="font-card">
+                            <div class="eyebrow">Body — Space Grotesk</div>
+                            <div class="specimen-body">The boundary between human and machine dissolves at the edge of every interface. Build for what comes next.</div>
+                            <div class="meta">Space Grotesk · 400 / 500 · Google Fonts</div>
+                        </div>
+                        <div class="font-card">
+                            <div class="eyebrow">Mono — Space Mono</div>
+                            <div class="specimen-mono">SYS_STATUS: NOMINAL · BUILD 2.4.1 · LATENCY 12ms · UPTIME 99.9%</div>
+                            <div class="meta">Space Mono · 400 / 700 · for data, labels, code</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="sg-section">
-                <div class="sg-section-label">Typography</div>
-                <div class="type-sample">
-                    <div class="type-display">Orbitron 900 — Display</div>
-                    <div class="type-body">Space Grotesk 400 — Body copy. Clean, readable, neutral weight.</div>
-                    <div class="type-dim">Space Grotesk Dim — Secondary labels and supporting text.</div>
-                    <div class="type-mono">Space Mono — 0.000 · 100% · readouts · version strings</div>
+                <!-- ══ TYPE SCALE ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">Type Scale</div>
+                    <div class="type-scale-panel">
+                        <div class="type-scale-row">
+                            <div class="type-scale-meta">D1 · 32px · 700</div>
+                            <div style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:32px;color:var(--textPrimary);letter-spacing:2px;">VOLTFORM</div>
+                        </div>
+                        <div class="type-scale-row">
+                            <div class="type-scale-meta">D2 · 22px · 600</div>
+                            <div style="font-family:'Orbitron',sans-serif;font-weight:600;font-size:22px;color:var(--textPrimary);">System Dashboard</div>
+                        </div>
+                        <div class="type-scale-row">
+                            <div class="type-scale-meta">D3 · 16px · 500</div>
+                            <div style="font-family:'Orbitron',sans-serif;font-weight:500;font-size:16px;color:var(--textPrimary);">Active deployments</div>
+                        </div>
+                        <div class="type-scale-row">
+                            <div class="type-scale-meta">D4 · 13px · 400</div>
+                            <div style="font-family:'Orbitron',sans-serif;font-weight:400;font-size:13px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;">MODULE STATUS</div>
+                        </div>
+                        <div class="type-scale-row">
+                            <div class="type-scale-meta">B1 · 15px · 400</div>
+                            <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:var(--textPrimary);">Your infrastructure, always available. Deploy with confidence across every edge node.</div>
+                        </div>
+                        <div class="type-scale-row">
+                            <div class="type-scale-meta">B2 · 13px · 400</div>
+                            <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--textDim);">Secondary body text — captions, metadata, helper copy beneath inputs and cards.</div>
+                        </div>
+                        <div class="type-scale-row">
+                            <div class="type-scale-meta">MONO · 11px</div>
+                            <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);">BUILD_ID: v2.4.1 · STATUS: 0x00 · LATENCY: 12ms</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="sg-section">
-                <div class="sg-section-label">Buttons — Slate Variant</div>
-                <div class="sg-row">
-                    <div class="wrap">
-                        <div class="glow"></div>
-                        <button class="btn-slate">Initialize</button>
-                    </div>
-                    <div class="wrap">
-                        <button class="btn-slate">Confirm</button>
-                    </div>
-                    <div class="wrap">
-                        <button class="btn-slate">Execute</button>
+                <!-- ══ ORBITRON WEIGHTS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">Orbitron Weights</div>
+                    <div class="sg-row">
+                        <div class="weight-card"><div class="w-label">400</div><div class="w-specimen" style="font-weight:400;">Voltform</div></div>
+                        <div class="weight-card"><div class="w-label">500</div><div class="w-specimen" style="font-weight:500;">Voltform</div></div>
+                        <div class="weight-card"><div class="w-label">600</div><div class="w-specimen" style="font-weight:600;">Voltform</div></div>
+                        <div class="weight-card"><div class="w-label">700</div><div class="w-specimen" style="font-weight:700;">Voltform</div></div>
+                        <div class="weight-card"><div class="w-label">900</div><div class="w-specimen" style="font-weight:900;color:var(--accent);">Voltform</div></div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <!-- ══ 02 COLOR TOKENS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">02 — Color Tokens</div>
+                    <div class="sg-row">
+                        <div class="swatch-wrap"><div class="swatch" style="background:#0b0d12;border:1px solid rgba(100,110,130,0.3);"></div><div class="swatch-label">--bg</div><div class="swatch-hex">#0b0d12</div></div>
+                        <div class="swatch-wrap"><div class="swatch" style="background:#08090e;border:1px solid rgba(100,110,130,0.3);"></div><div class="swatch-label">--surface</div><div class="swatch-hex">#08090e</div></div>
+                        <div class="swatch-wrap"><div class="swatch" style="background:#1a1d24;border:1px solid rgba(100,110,130,0.3);"></div><div class="swatch-label">--panel</div><div class="swatch-hex">#1a1d24</div></div>
+                        <div class="swatch-wrap"><div class="swatch" style="background:#c8cdd8;"></div><div class="swatch-label">--textPrimary</div><div class="swatch-hex">#c8cdd8</div></div>
+                        <div class="swatch-wrap"><div class="swatch" style="background:#6d7585;"></div><div class="swatch-label">--textDim</div><div class="swatch-hex">#6d7585</div></div>
+                        <div class="swatch-wrap"><div class="swatch" style="background:#d0d4de;"></div><div class="swatch-label">--accent</div><div class="swatch-hex">#d0d4de</div></div>
+                        <div class="swatch-wrap"><div class="swatch" style="background:rgba(208,212,222,0.85);border:1px solid rgba(100,110,130,0.3);"></div><div class="swatch-label">--borderHi</div><div class="swatch-hex">rgba(208,212,222,.85)</div></div>
+                    </div>
+                </div>
+
+                <!-- ══ 03 BUTTONS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">03 — Buttons</div>
+                    <div class="sg-row" style="align-items:center;">
+                        <div class="wrap"><div class="glow"></div><button class="btn-slate">Initialize</button></div>
+                        <div class="wrap"><button class="btn-slate">Confirm</button></div>
+                        <div class="wrap"><button class="btn-slate">Deploy Now</button></div>
+                        <div class="wrap"><button class="btn-slate" disabled style="opacity:0.38;cursor:not-allowed;">Disabled</button></div>
+                        <div class="wrap"><button class="btn-slate" style="border-color:rgba(200,60,60,0.4);border-top-color:rgba(200,60,60,0.4);color:rgba(220,80,80,0.9);">Terminate</button></div>
+                    </div>
+                </div>
+
+                <!-- ══ 04 FORM INPUTS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">04 — Text Inputs</div>
+                    <div class="sg-row">
+                        <div class="sg-col">
+                            <label class="field-label">Default</label>
+                            <input type="text" placeholder="Enter value...">
+                        </div>
+                        <div class="sg-col">
+                            <label class="field-label">With icon</label>
+                            <div class="input-wrap">
+                                <svg class="icon" viewBox="0 0 16 16" style="width:14px;height:14px;position:absolute;left:12px;top:50%;transform:translateY(-50%);"><rect x="1" y="3" width="14" height="10" rx="1"/><polyline points="1,3 8,9 15,3"/></svg>
+                                <input type="email" placeholder="user@schimke.io" style="padding-left:38px;">
+                            </div>
+                        </div>
+                        <div class="sg-col">
+                            <label class="field-label">Password</label>
+                            <input type="password" placeholder="••••••••••••">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ INPUT STATES ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">Input States</div>
+                    <div class="sg-row">
+                        <div class="sg-col">
+                            <label class="field-label">Error</label>
+                            <input type="text" class="input-error" value="invalid_value@">
+                            <span class="helper err">Invalid format — check your input</span>
+                        </div>
+                        <div class="sg-col">
+                            <label class="field-label">Success</label>
+                            <input type="text" class="input-success" value="schimke_user_01">
+                            <span class="helper ok">Username available</span>
+                        </div>
+                        <div class="sg-col">
+                            <label class="field-label">Disabled</label>
+                            <input type="text" value="Read only value" disabled style="opacity:0.38;cursor:not-allowed;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ SEARCH + SELECT ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">Search &amp; Select</div>
+                    <div class="sg-row">
+                        <div class="sg-col" style="flex:2;min-width:220px;">
+                            <label class="field-label">Search</label>
+                            <div class="search-wrap">
+                                <input type="text" placeholder="Search systems...">
+                                <span class="search-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/></svg></span>
+                                <span class="kbd">⌘K</span>
+                            </div>
+                        </div>
+                        <div class="sg-col">
+                            <label class="field-label">Select</label>
+                            <div class="select-wrap">
+                                <select>
+                                    <option>Production</option>
+                                    <option>Staging</option>
+                                    <option>Development</option>
+                                    <option>Preview</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ TEXTAREA ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">Textarea</div>
+                    <div class="sg-col">
+                        <label class="field-label">Deployment notes</label>
+                        <textarea id="ta" placeholder="Describe this deployment..." oninput="document.getElementById('cc').textContent=this.value.length+' / 300'"></textarea>
+                        <div class="char-row"><span class="char-count" id="cc">0 / 300</span></div>
+                    </div>
+                </div>
+
+                <!-- ══ TOGGLES ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">Toggles</div>
+                    <div class="sg-row" style="gap:24px;align-items:center;flex-wrap:wrap;">
+                        <label class="toggle-row" onclick="this.querySelector('.toggle-track').classList.toggle('on')">
+                            <div class="toggle-track on"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Auto-deploy enabled</span>
+                        </label>
+                        <label class="toggle-row" onclick="this.querySelector('.toggle-track').classList.toggle('on')">
+                            <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Notifications</span>
+                        </label>
+                        <label class="toggle-row" onclick="this.querySelector('.toggle-track').classList.toggle('on')">
+                            <div class="toggle-track on"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Dark mode</span>
+                        </label>
+                        <label class="toggle-row" style="opacity:0.38;pointer-events:none;">
+                            <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                            <span class="toggle-label">Disabled</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ══ CHECKBOXES + RADIOS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">Checkboxes &amp; Radio Buttons</div>
+                    <div class="sg-row" style="gap:40px;">
+                        <div class="sg-col-auto" style="gap:12px;">
+                            <label class="check-row" onclick="this.querySelector('.check-box').classList.toggle('on')">
+                                <div class="check-box on"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                                <span class="check-label">Enable logging</span>
+                            </label>
+                            <label class="check-row" onclick="this.querySelector('.check-box').classList.toggle('on')">
+                                <div class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                                <span class="check-label">Auto-rollback</span>
+                            </label>
+                            <label class="check-row" onclick="this.querySelector('.check-box').classList.toggle('on')">
+                                <div class="check-box on"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                                <span class="check-label">Send alerts</span>
+                            </label>
+                            <label class="check-row" style="opacity:0.38;pointer-events:none;">
+                                <div class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+                                <span class="check-label">Disabled option</span>
+                            </label>
+                        </div>
+                        <div class="sg-col-auto" style="gap:12px;">
+                            <label class="radio-row" onclick="document.querySelectorAll('.radio-box').forEach(r=>r.classList.remove('on'));this.querySelector('.radio-box').classList.add('on')">
+                                <div class="radio-box on"><div class="radio-dot"></div></div>
+                                <span class="radio-label">Production</span>
+                            </label>
+                            <label class="radio-row" onclick="document.querySelectorAll('.radio-box').forEach(r=>r.classList.remove('on'));this.querySelector('.radio-box').classList.add('on')">
+                                <div class="radio-box"><div class="radio-dot"></div></div>
+                                <span class="radio-label">Staging</span>
+                            </label>
+                            <label class="radio-row" onclick="document.querySelectorAll('.radio-box').forEach(r=>r.classList.remove('on'));this.querySelector('.radio-box').classList.add('on')">
+                                <div class="radio-box"><div class="radio-dot"></div></div>
+                                <span class="radio-label">Development</span>
+                            </label>
+                            <label class="radio-row" style="opacity:0.38;pointer-events:none;">
+                                <div class="radio-box"><div class="radio-dot"></div></div>
+                                <span class="radio-label">Disabled</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ RANGE ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">Range Slider</div>
+                    <div class="sg-col" style="max-width:480px;">
+                        <label class="field-label">Replica count</label>
+                        <div class="range-wrap">
+                            <div class="range-top">
+                                <span class="range-edge">1</span>
+                                <span class="range-val" id="rv">4</span>
+                                <span class="range-edge">16</span>
+                            </div>
+                            <input type="range" min="1" max="16" value="4" id="rs"
+                                oninput="document.getElementById('rv').textContent=this.value;var pct=((this.value-this.min)/(this.max-this.min)*100)+'%';this.style.setProperty('--pct',pct);">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ 05 STAT CARDS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">05 — Stat Cards</div>
+                    <div class="sg-row">
+                        <div class="stat-card">
+                            <div class="stat-label">Active Builds</div>
+                            <div class="stat-value">84</div>
+                            <div class="stat-sub">Across 3 clusters</div>
+                            <div class="stat-delta">+12 since yesterday</div>
+                            <div class="stat-bar"><div class="stat-bar-fill" style="width:84%;"></div></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">API Calls / Min</div>
+                            <div class="stat-value">2.4K</div>
+                            <div class="stat-sub">Peak: 3.8K at 14:22</div>
+                            <div class="stat-delta">+340 from baseline</div>
+                            <div class="stat-bar"><div class="stat-bar-fill" style="width:62%;"></div></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Uptime</div>
+                            <div class="stat-value">99.9%</div>
+                            <div class="stat-sub">30-day rolling avg</div>
+                            <div class="stat-delta">↑ SLA target met</div>
+                            <div class="stat-bar"><div class="stat-bar-fill" style="width:99%;"></div></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Error Rate</div>
+                            <div class="stat-value" style="color:rgba(220,80,80,0.8);">0.3%</div>
+                            <div class="stat-sub">7 errors / 2.4K calls</div>
+                            <div class="stat-delta" style="color:rgba(220,100,100,0.7);">↓ -0.12% this week</div>
+                            <div class="stat-bar"><div class="stat-bar-fill" style="width:3%;background:rgba(200,60,60,0.6);"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ 06 FEATURE CARDS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">06 — Feature Cards</div>
+                    <div class="sg-row">
+                        <div class="feature-card">
+                            <div class="fc-icon">
+                                <svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg>
+                            </div>
+                            <div class="fc-title">Auto Deploy</div>
+                            <div class="fc-body">Push to main and your infrastructure updates automatically. Zero downtime, full rollback.</div>
+                            <div class="fc-badge active"><div class="dot"></div> Active</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="fc-icon">
+                                <svg viewBox="0 0 16 16"><line x1="8" y1="1" x2="8" y2="15"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
+                            </div>
+                            <div class="fc-title">Edge Routing</div>
+                            <div class="fc-body">Route requests to the nearest node automatically. Sub-10ms response times globally.</div>
+                            <div class="fc-badge"><div class="dot"></div> Beta</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="fc-icon">
+                                <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1"/><line x1="5" y1="8" x2="11" y2="8"/></svg>
+                            </div>
+                            <div class="fc-title">Rollback</div>
+                            <div class="fc-body">One-click rollback to any previous build. Full state preservation across all nodes.</div>
+                            <div class="fc-badge"><div class="dot"></div> Stable</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ 07 PROGRESS BARS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">07 — Progress Bars</div>
+                    <div class="sg-col" style="max-width:480px;gap:14px;">
+                        <div class="progress-row">
+                            <div class="progress-header"><span class="progress-label">CPU Usage</span><span class="progress-val">72%</span></div>
+                            <div class="progress-track"><div class="progress-fill" style="width:72%;"></div></div>
+                        </div>
+                        <div class="progress-row">
+                            <div class="progress-header"><span class="progress-label">Memory</span><span class="progress-val">48%</span></div>
+                            <div class="progress-track"><div class="progress-fill" style="width:48%;"></div></div>
+                        </div>
+                        <div class="progress-row">
+                            <div class="progress-header"><span class="progress-label">Storage</span><span class="progress-val">91%</span></div>
+                            <div class="progress-track"><div class="progress-fill" style="width:91%;background:linear-gradient(90deg,rgba(200,80,80,0.5),rgba(220,80,80,0.8));"></div></div>
+                        </div>
+                        <div class="progress-row">
+                            <div class="progress-header"><span class="progress-label">Network I/O</span><span class="progress-val">33%</span></div>
+                            <div class="progress-track"><div class="progress-fill" style="width:33%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ 08 TAGS / BADGES ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">08 — Tags &amp; Badges</div>
+                    <div class="sg-row" style="align-items:center;gap:10px;">
+                        <span class="tag live">Live</span>
+                        <span class="tag nominal">Nominal</span>
+                        <span class="tag paused">Paused</span>
+                        <span class="tag failed">Failed</span>
+                        <span class="tag">Inactive</span>
+                        <span class="tag" style="border-color:rgba(100,140,200,0.3);color:rgba(120,160,220,0.9);">Info</span>
+                    </div>
+                </div>
+
+                <!-- ══ 09 TABS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">09 — Tab Navigation</div>
+                    <div class="tab-row">
+                        <div class="tab-item active">Overview</div>
+                        <div class="tab-item">Deployments</div>
+                        <div class="tab-item">Logs</div>
+                        <div class="tab-item">Settings</div>
+                    </div>
+                </div>
+
+                <!-- ══ 10 BREADCRUMBS + PAGINATION ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">10 — Breadcrumbs &amp; Pagination</div>
+                    <div class="breadcrumb-trail">
+                        <a href="#" class="bc-seg">Voltform</a>
+                        <span class="bc-sep">/</span>
+                        <a href="#" class="bc-seg">Clusters</a>
+                        <span class="bc-sep">/</span>
+                        <a href="#" class="bc-seg">prod-cluster-07</a>
+                        <span class="bc-sep">/</span>
+                        <span class="bc-current">Build #2841</span>
+                    </div>
+                    <div class="pg-row">
+                        <button class="pg-btn arrow">‹</button>
+                        <button class="pg-btn">1</button>
+                        <button class="pg-btn active">2</button>
+                        <button class="pg-btn">3</button>
+                        <button class="pg-btn">4</button>
+                        <button class="pg-btn" style="width:auto;padding:0 10px;">···</button>
+                        <button class="pg-btn">12</button>
+                        <button class="pg-btn arrow">›</button>
+                    </div>
+                </div>
+
+                <!-- ══ 11 TOOLTIPS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">11 — Tooltips</div>
+                    <div class="sg-row" style="align-items:center;gap:12px;">
+                        <div class="tooltip-host">
+                            <button class="btn-slate" style="padding:8px 16px;font-size:11px;">Top tooltip</button>
+                            <div class="tooltip-tip">Triggers on hover</div>
+                        </div>
+                        <div class="tooltip-host">
+                            <button class="btn-slate" style="padding:8px 16px;font-size:11px;">Deploy action</button>
+                            <div class="tooltip-tip">Pushes to prod · Build #2841</div>
+                        </div>
+                        <div class="tooltip-host">
+                            <button class="btn-slate" style="padding:8px 16px;font-size:11px;">Status</button>
+                            <div class="tooltip-tip">SYS_STATUS: NOMINAL</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ 12 MODALS ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">12 — Modals</div>
+                    <div class="sg-row">
+                        <div class="modal-card">
+                            <div class="modal-header">
+                                <div class="modal-title">Confirm Deployment</div>
+                                <button class="modal-close">×</button>
+                            </div>
+                            <div class="modal-body">
+                                You are about to deploy <strong style="color:var(--accent);">build #2841</strong> to the production cluster. This action will affect all active users.
+                            </div>
+                            <div class="modal-code">$ voltform deploy --env prod --build 2841</div>
+                            <div class="modal-actions">
+                                <button class="btn-slate" style="padding:8px 16px;font-size:11px;">Cancel</button>
+                                <button class="btn-slate" style="padding:8px 16px;font-size:11px;">Deploy Now</button>
+                            </div>
+                        </div>
+                        <div class="modal-card" style="border-color:rgba(200,60,60,0.25);border-top-color:rgba(200,60,60,0.15);">
+                            <div class="modal-header">
+                                <div class="modal-title danger">Terminate Cluster</div>
+                                <button class="modal-close">×</button>
+                            </div>
+                            <div class="modal-body">
+                                This will permanently destroy <strong style="color:rgba(220,80,80,0.9);">prod-cluster-07</strong> and all associated data. This action cannot be undone.
+                            </div>
+                            <div class="modal-danger-box">WARNING: 84 active sessions will be terminated</div>
+                            <div class="modal-actions">
+                                <button class="btn-slate" style="padding:8px 16px;font-size:11px;">Cancel</button>
+                                <button class="btn-slate" style="padding:8px 16px;font-size:11px;border-color:rgba(200,60,60,0.4);color:rgba(220,80,80,0.9);">Terminate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ 13 TERMINAL LOG ══ -->
+                <div class="sg-block">
+                    <div class="sg-block-label">13 — Terminal Log</div>
+                    <div class="sg-row">
+                        <div class="terminal-card">
+                            <div class="terminal-bar">
+                                <div class="t-dot red"></div>
+                                <div class="t-dot yellow"></div>
+                                <div class="t-dot green"></div>
+                                <div class="t-title">SYSTEM LOG</div>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="t-line"><span class="t-accent">08:14:02</span> <span class="t-ok">[OK]</span> Cluster initialized — 8 nodes</div>
+                                <div class="t-line"><span class="t-accent">08:14:05</span> <span class="t-info">[INFO]</span> Loading config from /etc/voltform</div>
+                                <div class="t-line"><span class="t-accent">08:14:08</span> <span class="t-ok">[OK]</span> Health checks passed — 8/8</div>
+                                <div class="t-line"><span class="t-accent">08:14:11</span> <span class="t-warn">[WARN]</span> eu-west-3 latency elevated: 340ms</div>
+                                <div class="t-line"><span class="t-accent">08:14:15</span> <span class="t-info">[INFO]</span> Deploying build #2841 to prod</div>
+                                <div class="t-line"><span class="t-accent">08:14:22</span> <span class="t-ok">[OK]</span> Deploy complete — v2.4.1 live</div>
+                                <div class="t-line"><span class="t-accent">08:14:24</span> <span class="t-err">[ERR]</span> Node eu-west-3 unreachable</div>
+                                <div class="t-line"><span class="t-accent">08:14:28</span> <span class="t-info">[INFO]</span> Initiating failover protocol</div>
+                                <div class="t-line"><span class="t-accent">08:14:39</span> <span class="t-ok">[OK]</span> Failover complete — 7/7 active</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /sg-page -->
+        </div><!-- /content-area -->
     </main>
 
+    <script>
+        document.getElementById('rs').style.setProperty('--pct', '20%');
+    </script>
 </body>
 </html>
+```

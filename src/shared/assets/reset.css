@@ -1,69 +1,254 @@
-/* APPLICATION GRID */
-.app-container {
-    display: flex;
-    min-height: 100vh;
-    background-color: var(--bg);
-    overflow: hidden;
+/* ============================================
+   SCHIMKE STUDIOS — RESET & STRUCTURE ONLY
+   No colors. No theme values. Bones only.
+   ============================================ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* SIDEBAR */
-.side-nav {
-    width: 240px;
-    border-right: 1px solid var(--border);
+html { font-size: 16px; }
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+}
+
+p, span, a, li {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+body.app-container {
     display: flex;
     flex-direction: column;
-    padding: 24px;
-    background: var(--panel);
 }
 
-.nav-brand { margin-bottom: 48px; }
+.side-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border, rgba(100,110,130,0.18));
+}
 
-.nav-list { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.nav-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
 
 .nav-item {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     text-decoration: none;
-    font-family: 'Orbitron';
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--textDim);
-    padding: 12px;
-    border: 1px solid transparent;
+    padding: 6px 10px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    transition: all 0.1s ease;
+    gap: 6px;
+    border: 1px solid transparent;
+    transition: all 0.15s;
 }
 
-.nav-item.active, .nav-item:hover {
-    color: var(--accent);
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
+.nav-icon {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
 }
 
-.nav-icon { font-family: 'Space Mono'; opacity: 0.4; font-size: 9px; }
+.nav-footer { display: none; }
 
-/* MAIN STAGE */
+.sg-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.sg-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.sg-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.sg-mono {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.sg-section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border, rgba(100,110,130,0.18));
+}
+
+.type-display {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(18px, 5vw, 28px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.type-body {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+}
+
+.type-dim {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+}
+
+.type-mono {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+}
+
 .main-stage {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    flex: 1;
     overflow-y: auto;
 }
 
 .status-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 24px;
-    margin-bottom: 40px;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    border-bottom: 1px solid var(--border, rgba(100,110,130,0.18));
+}
+
+.status-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(14px, 4vw, 22px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .content-area {
+    padding: 20px 16px;
     display: flex;
     flex-direction: column;
+    gap: 28px;
+    align-items: flex-start;
+}
+
+.breadcrumb {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    flex: 1;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.breadcrumb a { text-decoration: none; transition: color 0.15s; }
+.breadcrumb-sep { opacity: 0.4; }
+
+.wrap {
+    position: relative;
+    display: inline-flex;
+}
+
+.glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: 0 0 12px 2px rgba(160,168,184,0.2);
+    border-radius: 2px;
+}
+
+.sg-section { display: flex; flex-direction: column; gap: 16px; }
+.sg-row { display: flex; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+
+.swatch-wrap { display: flex; flex-direction: column; gap: 4px; }
+.swatch { width: 40px; height: 40px; border-radius: 2px; }
+.swatch-label { font-family: 'Space Grotesk', sans-serif; font-size: 9px; }
+.swatch-hex { font-family: 'Space Mono', monospace; font-size: 8px; }
+
+.type-sample { display: flex; flex-direction: column; gap: 14px; }
+
+@media (min-width: 640px) {
+    .status-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+    }
+
+    .content-area { padding: 28px 24px; }
+
+    .swatch { width: 48px; height: 48px; }
+    .swatch-label { font-size: 10px; }
+    .swatch-hex { font-size: 9px; }
+}
+
+@media (min-width: 900px) {
+    body.app-container {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .side-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 24px 16px;
+        border-right: 1px solid var(--border, rgba(100,110,130,0.18));
+        border-bottom: none;
+        gap: 32px;
+        min-height: 100vh;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        width: 100%;
+    }
+
+    .nav-item { font-size: 11px; letter-spacing: 2px; }
+
+    .nav-footer { display: block; margin-top: auto; }
+
+    .content-area { padding: 32px; }
+
+    .status-header { padding: 20px 32px; }
 }
