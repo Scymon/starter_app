@@ -94,7 +94,8 @@ body.app-container {
 .content-area {
     padding: 20px 16px;
     display: flex; flex-direction: column;
-    gap: 28px; align-items: flex-start;
+    gap: 28px; 
+    align-items: flex-start;
 }
 
 /* ── BREADCRUMB ── */
