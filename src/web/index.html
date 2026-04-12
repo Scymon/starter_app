@@ -41,32 +41,40 @@
 
     <div class="content-area" style="padding: 0; overflow: hidden; height: calc(100vh - 64px); background: #050608;">
         
-        <div id="ui-canvas" style="
-            width: 100%; 
-            height: 100%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            background-image: 
-                radial-gradient(circle, rgba(100,110,130,0.05) 1px, transparent 1px);
-            background-size: 32px 32px;
-            position: relative;
-        ">
+    <div id="ui-canvas" style="
+        width: 100%; 
+        height: 100%; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        background-image: 
+            radial-gradient(circle, rgba(100,110,130,0.05) 1px, transparent 1px);
+        background-size: 32px 32px;
+        position: relative;
+        overflow: hidden;
+    ">
 
-            <div class="empty-notif" style="text-align: center;">
-                <div class="sg-block-label" style="justify-content: center; margin-bottom: 8px; border: none;">
-                    CANVAS_INITIALIZED
-                </div>
-                <div class="sg-mono" style="opacity: 0.4; font-size: 10px;">
-                    Awaiting Component Injection...
-                </div>
+        <!-- Placeholder (will be removed on first inject) -->
+        <div class="empty-notif" style="text-align: center; z-index: 10;">
+            <div class="sg-block-label" style="justify-content: center; margin-bottom: 8px; border: none;">
+                CANVAS_INITIALIZED
             </div>
-
-            <div style="position: absolute; bottom: 16px; left: 16px;" class="sg-mono">
-                X: 0.00 // Y: 0.00
+            <div class="sg-mono" style="opacity: 0.4; font-size: 10px;">
+                Awaiting Component Injection...
             </div>
-
+            <button class="btn-slate" onclick="CanvasInjector.demoInject()" 
+                    style="margin-top: 24px; padding: 12px 32px;">
+                INJECT DEMO COMPONENTS
+            </button>
         </div>
+
+        <!-- Live components will appear here (absolute positioned for canvas feel) -->
+
+        <div style="position: absolute; bottom: 16px; left: 16px;" class="sg-mono">
+            X: 0.00 // Y: 0.00
+        </div>
+
+    </div>
         </div>
     </main>
     
@@ -78,5 +86,6 @@
                 .catch(err => console.error('SW: Failed', err));
         }
     </script>
+    <script type="module" src="../shared/js/canvas-injector.js"></script>
 </body>
 </html>
