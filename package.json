@@ -1,0 +1,31 @@
+{
+  "name": "starter_app",
+  "version": "1.0.0",
+  "description": "This app is the base app for Schimke Studios designed apps. It functions as the starting base for app ideas and a way to build on a working structure that can help other apps.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+  "dev:web": "cd src/web && npm start",
+  "dev:desktop": "cd src/desktop && npx electron .",
+  "test:web": "node src/web/index.js",
+  "test:desktop": "node src/desktop/main.js",
+  "dev:python": ".\\src\\python\\venv\\Scripts\\python.exe src/python/main.py",
+"test:python": ".\\src\\python\\venv\\Scripts\\python.exe src/python/main.py"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scymon/starter_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Scymon/starter_app/issues"
+  },
+  "homepage": "https://github.com/Scymon/starter_app#readme"
+  
+}
