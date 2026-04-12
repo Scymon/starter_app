@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
     <title>Starter App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Space+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../shared/assets/reset.css">
+    <link rel="stylesheet" href="../shared/assets/darktheme.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <div id="app">
-        <h1>Web Engine: Active</h1>
+    <h1>Starter App: Active</h1>
+
+    <div class="wrap">
+        <button class="btn-slate">Initialize</button>
     </div>
+
     <script src="index.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(() => console.log('SW: Registered'))
+                .catch(err => console.error('SW: Failed', err));
+        }
+    </script>
 </body>
 </html>

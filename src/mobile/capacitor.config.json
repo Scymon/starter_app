@@ -1,0 +1,13 @@
+{
+  "appId": "com.schimkestudios.starterapp",
+  "appName": "Starter App",
+  "webDir": "../web",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

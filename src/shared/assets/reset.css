@@ -1,16 +1,18 @@
-/* Scimke Studios - Global Reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-body, h1, h2, h3, p {
-    margin: 0;
-    padding: 0;
-}
+/* STRUCTURAL BONES ONLY */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
+    font-family: 'Space Grotesk', sans-serif;
     line-height: 1.5;
-    font-family: sans-serif;
-    background-color: #1a1a1a; /* Dark base */
-    color: #ffffff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.wrap { position: relative; display: inline-flex; }

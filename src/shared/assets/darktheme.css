@@ -1,0 +1,30 @@
+/* SLATE COAL SKIN */
+:root {
+    --bg: #0b0d12;
+    --textPrimary: #c8cdd8;
+    --accent: #d0d4de;
+    --borderHi: rgba(208, 212, 222, 0.85);
+    --surface: #08090e;
+}
+
+body { background-color: var(--bg); color: var(--textPrimary); }
+
+.btn-slate {
+    cursor: pointer;
+    padding: 14px 32px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--surface);
+    border-top: 1px solid var(--borderHi);
+    border-left: 1px solid rgba(155, 163, 178, 0.32);
+    box-shadow: 0 5px 0 #000;
+    transition: transform 0.07s, box-shadow 0.07s;
+}
+
+.btn-slate:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #000;
+}
