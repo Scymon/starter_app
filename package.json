@@ -13,7 +13,12 @@
   "test:web": "node src/web/index.js",
   "test:desktop": "node src/desktop/main.js",
   "dev:python": ".\\src\\python\\venv\\Scripts\\python.exe src/python/main.py",
-"test:python": ".\\src\\python\\venv\\Scripts\\python.exe src/python/main.py"
+  "test:python": ".\\src\\python\\venv\\Scripts\\python.exe src/python/main.py",
+  "prune:web": "rmdir /s /q src\\web",
+  "prune:python": "rmdir /s /q src\\python",
+  "prune:desktop": "rmdir /s /q src\\desktop",
+  "prune:all-but-python": "call npm run prune:web && call npm run prune:desktop",
+  "prune:all-but-web": "call npm run prune:python && call npm run prune:desktop"
 },
   "repository": {
     "type": "git",
