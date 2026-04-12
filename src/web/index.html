@@ -32,20 +32,40 @@
         </div>
     </aside>
 
-    <main class="main-stage">
-        <header class="status-header">
-            <h1 class="sg-title">Starter App: <span>Active</span></h1>
-            <div class="sg-badge">STATUS: NOMINAL</div>
-        </header>
+<main class="main-stage">
+    
+    <header class="status-header">
+        <h1 class="sg-title">Slate Coal <span>Project_Canvas</span></h1>
+        <div class="sg-badge">MODE: EDIT_VIEW // ALPHA_0.1</div>
+    </header>
 
-        <section class="content-area">
-            <div class="wrap">
-                <div class="glow"></div>
-                <button class="btn-slate">Initialize</button>
+    <div class="content-area" style="padding: 0; overflow: hidden; height: calc(100vh - 64px); background: #050608;">
+        
+        <div id="ui-canvas" style="
+            width: 100%; 
+            height: 100%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            background-image: 
+                radial-gradient(circle, rgba(100,110,130,0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+            position: relative;
+        ">
+
+            <div class="empty-notif" style="text-align: center;">
+                <div class="sg-block-label" style="justify-content: center; margin-bottom: 8px; border: none;">CANVAS_INITIALIZED</div>
+                <div class="sg-mono" style="opacity: 0.4; font-size: 10px;">Awaiting Component Injection...</div>
             </div>
-        </section>
-    </main>
 
+            <div style="position: absolute; bottom: 16px; left: 16px;" class="sg-mono">
+                X: 0.00 // Y: 0.00
+            </div>
+
+        </div>
+        </div>
+    </main>
+    
     <script src="index.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
