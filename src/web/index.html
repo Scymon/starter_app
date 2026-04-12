@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0b0d12">
-    <title>Starter App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Space+Grotesk:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../shared/assets/reset.css">
-    <link rel="stylesheet" href="../shared/assets/darktheme.css">
-    <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8"> <!-- UTF-8 Character Encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Responsive Design -->
+    <meta name="theme-color" content="#0b0d12"> <!-- Mobile Browser Theme Color -->
+    <title>Starter App</title> <!-- Page Title -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Space+Grotesk:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <link rel="stylesheet" href="../shared/assets/reset.css">  <!-- CSS Reset -->
+    <link rel="stylesheet" href="../shared/assets/darktheme.css"> <!-- Dark Theme -->
+    <link rel="manifest" href="manifest.json">  <!-- PWA Manifest -->
 </head>
-<body class="app-container">
+<body class="app-container"> <!-- Main App Container -->
 
-    <aside class="side-nav">
+    <aside class="side-nav"> <!-- Side Navigation -->
         <div class="nav-brand">
             <div class="sg-eyebrow">SYSTEM_CORE</div>
             <div class="sg-title">V-FORM</div>
         </div>
 
-        <nav class="nav-list">
+        <nav class="nav-list"> <!-- Navigation Links -->
             <a href="index.html" class="nav-item active">
                 <span class="nav-icon">01</span> HOME
             </a>
@@ -27,19 +27,19 @@
             </a>
         </nav>
 
-        <div class="nav-footer">
+        <div class="nav-footer"> <!-- Footer with Build Info -->
             <div class="sg-mono">BUILD_2.4.1</div>
         </div>
-    </aside>
+    </aside> <!-- End of Side Navigation -->
 
-<main class="main-stage">
+<main class="main-stage"> <!-- Main Content Area -->
     
-    <header class="status-header">
+    <header class="status-header"> <!-- Status Header -->
         <h1 class="sg-title">Slate Coal <span>Project_Canvas</span></h1>
         <div class="sg-badge">MODE: EDIT_VIEW // ALPHA_0.1</div>
     </header>
 
-    <div class="content-area" style="padding: 0; overflow: hidden; height: calc(100vh - 64px); background: #050608;">
+    <div class="content-area" style="padding: 0; overflow: hidden; height: calc(100vh - 64px); background: #050608;"> <!-- Content Area with Canvas -->
         
     <div id="ui-canvas" style="
         width: 100%; 
@@ -52,7 +52,7 @@
         background-size: 32px 32px;
         position: relative;
         overflow: hidden;
-    ">
+    "> <!-- Canvas Area with Grid Background -->
 
         <!-- Placeholder (will be removed on first inject) -->
         <div class="empty-notif" style="text-align: center; z-index: 10;">
@@ -66,9 +66,11 @@
                     style="margin-top: 24px; padding: 12px 32px;">
                 INJECT DEMO COMPONENTS
             </button>
-        </div>
+        </div> \
+        <!-- End of Placeholder -->
 
-        <!-- Live components will appear here (absolute positioned for canvas feel) -->
+        <!-- Live components will appear here 
+        (absolute positioned for canvas feel) -->
 
         <div style="position: absolute; bottom: 16px; left: 16px;" class="sg-mono">
             X: 0.00 // Y: 0.00

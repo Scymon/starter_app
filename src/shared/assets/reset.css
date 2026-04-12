@@ -27,6 +27,12 @@ body.app-container {
     color: var(--textPrimary);
 }
 
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { border-radius: 0; }
+::-webkit-scrollbar-thumb { border-radius: 0; }
+::-webkit-scrollbar-corner { background: transparent; }
+
 /* ── SIDE NAV ── */
 .side-nav {
     display: flex;
