@@ -1,5 +1,21 @@
 import { THEMES } from '../shared/assets/themes.js';
+// Reusable theme applicator (called from modal + init)
+window.applyTheme = async function(mode = 'dark') {
+  try {
+    const res = await fetch('../shared/constants/settings.json');
+    const settings = await res.json();
+    const colors = THEMES[mode] || THEMES.dark;
 
+    const root = document.documentElement;
+    Object.entries(colors).forEach(([key, value]) => {
+      root.style.setProperty(`--${key}`, value);
+    });
+
+    console.log(`⚡ Voltform: ${mode.toUpperCase()} theme applied`);
+  } catch (e) {
+    console.error('Failed to apply theme:', e);
+  }
+};
 async function init() {
     try {
         // 1. Get the current mode from your settings

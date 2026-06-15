@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styleguide — Slate Coal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/assets/reset.css">
+    <link rel="stylesheet" href="../shared/assets/darktheme.css">
+    <link rel="stylesheet" href="../shared/assets/css/dashboard.css">
+</head>
+
+
+<body class="app-container">
+
+    <aside class="side-nav">
+        <div class="nav-brand">
+            <div class="sg-eyebrow">SYSTEM_CORE</div>
+            <div class="sg-title">V-FORM</div>
+        </div>
+        <nav class="nav-list"> <!-- Navigation Links -->
+            <a href="index.html" class="nav-item active">
+                <span class="nav-icon">01</span> HOME
+            </a>
+            <a href="styleguide.html" class="nav-item">
+                <span class="nav-icon">02</span> STYLEGUIDE
+            </a>
+            <a href="elements.html" class="nav-item">
+                <span class="nav-icon">03</span> ELEMENTS
+            </a>
+        </nav>
+        <div class="nav-footer"><div class="sg-mono">BUILD_2.4.1</div></div>
+    </aside>
+
+    <main class="main-stage">
+        <header class="status-header">
+            <h1>Slate Coal <span>Design System</span></h1>
+            <div class="sg-badge">VERSION: 1.0 // SLATE_COAL</div>
+        </header>
+
+        <div class="content-area">
+            <div class="breadcrumb-trail">
+                <a href="index.html" class="bc-seg">Home</a>
+                <span class="bc-sep">/</span>
+                <span class="bc-current">Styleguide</span>
+            </div>
+
+            <div class="sg-page">
+
+    <!-- TOPBAR -->
+    <div class="app-topbar">
+      <div class="app-logo"><div class="app-mark">VF</div>VOLTFORM</div>
+      <div style="width:1px;height:16px;background:rgba(255,255,255,0.06);"></div>
+      <div class="app-breadcrumb"><span style="color:rgba(90,90,84,0.4);">Dashboard</span> <span style="color:rgba(90,90,84,0.3);">/</span> <span>Clusters</span></div>
+      <div class="app-right">
+        <div class="app-icon-btn"><svg viewBox="0 0 14 14"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="13" y2="13"/></svg></div>
+        <div class="app-icon-btn" style="position:relative;">
+          <svg viewBox="0 0 14 14"><path d="M7 1a5 5 0 00-5 5v3l-1 1.5h12L12 9V6a5 5 0 00-5-5zM5.5 12.5a1.5 1.5 0 003 0"/></svg>
+          <div class="notif-pip">3</div>
+        </div>
+        <div class="app-icon-btn"><svg viewBox="0 0 14 14"><circle cx="7" cy="5" r="2.5"/><path d="M1 13s0-3 6-3 6 3 6 3"/></svg></div>
+        <div style="width:1px;height:16px;background:rgba(255,255,255,0.06);"></div>
+        <div class="app-avatar">DK</div>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="app-body">
+      <!-- SIDEBAR -->
+      <div class="app-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-head">Overview</div>
+          <div class="sidebar-item active" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="8" y="1" width="5" height="5" rx="1"/><rect x="1" y="8" width="5" height="5" rx="1"/><rect x="8" y="8" width="5" height="5" rx="1"/></svg>Dashboard</div>
+          <div class="sidebar-item" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><path d="M7 1L13 4v4c0 3-2.5 5-6 5S1 11 1 8V4z"/></svg>Clusters <span class="sidebar-badge">7</span></div>
+          <div class="sidebar-item" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><path d="M1 10L4 6 7 8 10 4 13 6" fill="none"/></svg>Deployments</div>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section">
+          <div class="sidebar-head">Monitoring</div>
+          <div class="sidebar-item" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M7 4v3l2 2"/></svg>Observability</div>
+          <div class="sidebar-item" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><path d="M1 3h12v8H1z" fill="none"/><path d="M4 7l2 2 4-4"/></svg>Alerts <span class="sidebar-badge" style="background:rgba(200,60,60,0.12);border-color:rgba(200,60,60,0.25);color:rgba(240,130,130,0.8);">2</span></div>
+          <div class="sidebar-item" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><path d="M2 2h10v10H2z" fill="none"/><path d="M5 5h4M5 8h2"/></svg>Logs</div>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section">
+          <div class="sidebar-head">Account</div>
+          <div class="sidebar-item" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><circle cx="7" cy="5" r="2.5"/><path d="M1 13s0-3 6-3 6 3 6 3"/></svg>Team</div>
+          <div class="sidebar-item" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><path d="M7 1l1 2h2l-1.5 1.5.5 2L7 5.5 5 6.5l.5-2L4 3h2z" fill="none"/><rect x="2" y="8" width="10" height="4" rx="1" fill="none"/></svg>Billing</div>
+          <div class="sidebar-item" onclick="setSidebarActive(this)"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="3"/><path d="M7 1v2M7 11v2M1 7h2M11 7h2"/></svg>Settings</div>
+        </div>
+        <div style="margin-top:auto;padding:12px 16px;border-top:1px solid rgba(255,255,255,0.04);">
+          <div style="font-family:'Space Mono',monospace;font-size:7px;color:rgba(80,80,74,0.38);">v2.4.1 · <span style="color:rgba(176,208,0,0.45);">●</span> Operational</div>
+        </div>
+      </div>
+
+      <!-- MAIN -->
+      <div class="app-main">
+        <div class="app-page-title">Clusters</div>
+        <div class="app-page-sub">7 clusters across 5 regions · all systems operational</div>
+        <!-- KPI strip -->
+        <div class="kpi-strip">
+          <div class="kpi-card"><div class="kpi-val">7</div><div class="kpi-label">Active clusters</div><div class="kpi-delta">↑ +2 this month</div></div>
+          <div class="kpi-card"><div class="kpi-val">42</div><div class="kpi-label">Total replicas</div><div class="kpi-delta">↑ +8 today</div></div>
+          <div class="kpi-card"><div class="kpi-val">99.9%</div><div class="kpi-label">Avg uptime</div><div class="kpi-delta">↑ 0.02% vs last week</div></div>
+          <div class="kpi-card"><div class="kpi-val">2.1s</div><div class="kpi-label">Avg deploy</div><div class="kpi-delta">↓ 0.3s faster</div></div>
+        </div>
+        <!-- Mini table -->
+        <table class="mini-table">
+          <thead><tr><th>Cluster</th><th>Region</th><th>Status</th><th>Replicas</th><th>Last deploy</th></tr></thead>
+          <tbody>
+            <tr><td style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:rgba(210,210,200,0.9);">eu-west-prod-01</td><td style="font-family:'Space Mono',monospace;font-size:10px;">EU West</td><td><span class="mini-badge mb-volt">Operational</span></td><td style="font-family:'Space Mono',monospace;color:#C8E800;">12</td><td style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(110,110,102,0.5);">2h ago</td></tr>
+            <tr><td style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:rgba(210,210,200,0.9);">us-east-prod-01</td><td style="font-family:'Space Mono',monospace;font-size:10px;">US East</td><td><span class="mini-badge mb-volt">Operational</span></td><td style="font-family:'Space Mono',monospace;color:#C8E800;">8</td><td style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(110,110,102,0.5);">45m ago</td></tr>
+            <tr><td style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:rgba(210,210,200,0.9);">ap-south-staging</td><td style="font-family:'Space Mono',monospace;font-size:10px;">AP South</td><td><span class="mini-badge mb-amber">Degraded</span></td><td style="font-family:'Space Mono',monospace;color:#D4B84A;">3</td><td style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(110,110,102,0.5);">5h ago</td></tr>
+            <tr><td style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:rgba(210,210,200,0.9);">us-west-dev-01</td><td style="font-family:'Space Mono',monospace;font-size:10px;">US West</td><td><span class="mini-badge mb-purple">Deploying</span></td><td style="font-family:'Space Mono',monospace;color:#C8AAFF;">5</td><td style="font-family:'Space Mono',monospace;font-size:9px;color:rgba(110,110,102,0.5);">now</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+            </div><!-- /sg-page -->
+        </div><!-- /content-area -->
+    </main>
+
+
+</body>
+</html>
